@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "214395208275",
+    "firebase_url": "https://smart-home-2fb17.firebaseio.com",
+    "project_id": "smart-home-2fb17",
+    "storage_bucket": "smart-home-2fb17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214395208275:android:601cdd6bd5b8f9bde37ca6",
+        "android_client_info": {
+          "package_name": "com.fardhani.smarthome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214395208275-58erf2i2463bf505d333ldr1r3rqg2en.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fardhani.smarthome",
+            "certificate_hash": "bf3c6a28323ad83f3fc39f12b42a2829d679c136"
+          }
+        },
+        {
+          "client_id": "214395208275-6u20k3b3um3i9jpm74ihp3kfuen4q221.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdM_POi8CH46WLk7DZFlXG1haS5is4aiY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214395208275-6u20k3b3um3i9jpm74ihp3kfuen4q221.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

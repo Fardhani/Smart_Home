@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="background">#1D1D1D</color>
+    <color name="backgroundCard">#414141</color>
+    <color name="white">#FFFFFF</color>
+    <color name="green">#259255</color>
+    <color name="red">#FA323C</color>
+    <color name="fontColor">#FAFAFA</color>
+    <color name="fontGrey">#8C8C8C</color>
+    <color name="transparent">#00000000</color>
+    <color name="backgroundNav">#B2B2B2</color>
+    <color name="inactiveNav">#78909c</color>
+    <color name="blueLogo">#2B92E4</color>
+</resources>

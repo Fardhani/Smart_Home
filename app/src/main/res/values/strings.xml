@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Smart Home</string>
+    <string name="token_mapbox">pk.eyJ1IjoiZmFyZGhhbmkiLCJhIjoiY2s1NWZ0amsxMGcwMTNmcnV5c2Vtd2wyMyJ9.1mfHE8Jarv0Jc0Q0aP3aJg</string>
+</resources>

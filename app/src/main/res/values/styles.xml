@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/backgroundCard</item>
+        <item name="colorPrimaryDark">@color/background</item>
+        <item name="colorAccent">@color/background</item>
+        <item name="android:textColor">@color/fontColor</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorControlActivated">@color/fontGrey</item>
+        <item name="colorControlNormal">@color/blueLogo</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="OverAllTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/background</item>
+        <item name="colorPrimaryDark">@color/background</item>
+        <item name="colorAccent">@color/background</item>
+        <item name="android:textColor">@color/fontColor</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+
+        <!-- switch theme -->
+        <item name="colorControlActivated">@color/green</item>
+    </style>
+
+    <style name="SettingTextViewTitle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GroupItemSetting">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+</resources>
