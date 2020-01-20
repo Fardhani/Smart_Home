@@ -4,8 +4,11 @@ import android.content.Context
 import android.location.Location
 import android.os.CountDownTimer
 import android.util.Log
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LiveData
 import com.fardhani.smarthome.Model.LocationModel
+import com.fardhani.smarthome.R
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -22,6 +25,8 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
     var timerStarted = false
     var homeClosed: Boolean? = null
     var securityMode: Boolean? = null
+    val context = context
+    var notify = false
 
     override fun onActive() {
         super.onActive()
@@ -95,6 +100,7 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
                     if (!homeLocked!!) {
                         //if timer did not started
                         if (timerStarted == false) {
+                            notify = false
                             timerStarted = true
                             timer.start()
                         }
@@ -103,11 +109,27 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
                 } else if (homeClosed == false) {
                     if (timerStarted)
                         timer.cancel()
-                    //make notification, because door unclosed
+                    if (notify == false) {
+                        notify = true
+                        //make notification, because door unclosed
+                        sendNotification("Close the Door","Door still open, close it first")
+                    }
                 }
             } else {
                 timer.cancel()
             }
+        }
+    }
+
+    fun sendNotification(title: String, message: String) {
+        val notificationBuilder = NotificationCompat.Builder(context)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setSmallIcon(R.mipmap.logo_app)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+
+        with(NotificationManagerCompat.from(context)){
+            notify(1001, notificationBuilder.build())
         }
     }
 

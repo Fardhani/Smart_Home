@@ -11,7 +11,7 @@ import com.fardhani.smarthome.Fragment.DashboardFragment
 import com.fardhani.smarthome.Fragment.LocationFragment
 import com.fardhani.smarthome.Fragment.SettingFragment
 import com.fardhani.smarthome.Service.LocationService
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +21,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //register fcm to subscribe smart_home topic
+        FirebaseMessaging.getInstance()
+            .subscribeToTopic("Smart_Home")
 
         //declaration of viewpager
         viewPager = containerFragment as ViewPager
