@@ -111,14 +111,14 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
                         if (securityMode != false) {
                             //add input to recent activity
                             inputRecentActivity(
-                                "ENABLE SECURITY MODE",
+                                "DISABLE SECURITY MODE",
                                 Date().toString(),
                                 uid_name
                             )
                         } else {
                             //add input to recent activity
                             inputRecentActivity(
-                                "DISABLE SECURITY MODE",
+                                "ENABLE SECURITY MODE",
                                 Date().toString(),
                                 uid_name
                             )
