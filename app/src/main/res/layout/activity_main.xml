@@ -11,10 +11,10 @@
         android:id="@+id/containerFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.gauravk.bubblenavigation.BubbleNavigationLinearView
         android:id="@+id/bottomNavigation"
@@ -39,8 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:bt_active="true"
-            app:bt_colorActive="@color/background"
-            app:bt_colorInactive="@color/fontColor"
+            app:bt_colorActive="@color/fontColor"
+            app:bt_colorInactive="@color/background"
             app:bt_icon="@drawable/icon_home"
             app:bt_shape="@drawable/background_stroke_navigation"
             app:bt_title="Home" />
@@ -50,8 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:bt_colorActive="@color/background"
-            app:bt_colorInactive="@color/fontColor"
+            app:bt_colorActive="@color/fontColor"
+            app:bt_colorInactive="@color/background"
             app:bt_icon="@drawable/icon_location"
             app:bt_shape="@drawable/background_stroke_navigation"
             app:bt_title="Location" />
@@ -61,8 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:bt_colorActive="@color/background"
-            app:bt_colorInactive="@color/fontColor"
+            app:bt_colorActive="@color/fontColor"
+            app:bt_colorInactive="@color/background"
             app:bt_icon="@drawable/icon_setting"
             app:bt_shape="@drawable/background_stroke_navigation"
             app:bt_title="Setting" />
