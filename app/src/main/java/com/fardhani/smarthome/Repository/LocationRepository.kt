@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.LiveData
 import com.fardhani.smarthome.Model.LocationModel
+import com.fardhani.smarthome.Model.RecentActivityModel
 import com.fardhani.smarthome.R
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -15,6 +16,7 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.firebase.database.*
 import com.mapbox.mapboxsdk.geometry.LatLng
+import java.util.*
 
 class LocationRepository(context: Context) : LiveData<LocationModel>() {
     private var fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
@@ -27,6 +29,7 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
     var securityMode: Boolean? = null
     val context = context
     var notify = false
+    var uid_name: String? = ""
 
     override fun onActive() {
         super.onActive()
@@ -41,6 +44,17 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
 
     private fun setLocationData(location: Location) {
         databaseReference = FirebaseDatabase.getInstance().reference
+        databaseReference.child("key").limitToFirst(1)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    p0.children.forEach {
+                        uid_name = it.child("name").value.toString()
+                    }
+                }
+            })
         databaseReference.child("home_profile").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
             }
@@ -57,6 +71,59 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
+                    //add activity lock or unlock the door
+                    if (homeLocked != (p0.child("locked").value as Boolean?)!!) {
+                        if (homeLocked == false) {
+                            //add input to recent activity
+                            inputRecentActivity(
+                                "UNLOCK THE DOOR",
+                                Date().toString(),
+                                uid_name
+                            )
+                        } else {
+                            //add input to recent activity
+                            inputRecentActivity(
+                                "LOCK THE DOOR",
+                                Date().toString(),
+                                uid_name
+                            )
+                        }
+                    }
+                    //add activity open or close the door
+                    if (homeClosed != (p0.child("closed").value as Boolean?)!!) {
+                        if (homeClosed == false) {
+                            //add input to recent activity
+                            inputRecentActivity(
+                                "CLOSE THE DOOR",
+                                Date().toString(),
+                                uid_name
+                            )
+                        } else {
+                            //add input to recent activity
+                            inputRecentActivity(
+                                "OPEN THE DOOR",
+                                Date().toString(),
+                                uid_name
+                            )
+                        }
+                    }
+                    if (securityMode != (p0.child("securityMode").value as Boolean?)!!) {
+                        if (securityMode == false) {
+                            //add input to recent activity
+                            inputRecentActivity(
+                                "ENABLE SECURITY MODE",
+                                Date().toString(),
+                                uid_name
+                            )
+                        } else {
+                            //add input to recent activity
+                            inputRecentActivity(
+                                "DISABLE SECURITY MODE",
+                                Date().toString(),
+                                uid_name
+                            )
+                        }
+                    }
                     homeLocked = (p0.child("locked").value as Boolean?)!!
                     homeClosed = (p0.child("closed").value as Boolean?)!!
                     securityMode = (p0.child("securityMode").value as Boolean?)!!
@@ -112,13 +179,24 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
                     if (notify == false) {
                         notify = true
                         //make notification, because door unclosed
-                        sendNotification("Close the Door","Door still open, close it first")
+                        sendNotification("Close the Door", "Door still open, close it first")
                     }
                 }
             } else {
                 timer.cancel()
             }
+
+            //door opened but door still locked
+            if (homeClosed != null && homeLocked != null && homeLocked == true && homeClosed == false) {
+                sendNotification("Danger!", "Someone may open the door without key")
+            }
         }
+    }
+
+    //function to input recent activity in firebase
+    private fun inputRecentActivity(activity: String?, time: String?, uid_name: String?) {
+        val recentActivity = RecentActivityModel(activity, time, uid_name)
+        databaseReference.child("activity").push().setValue(recentActivity)
     }
 
     fun sendNotification(title: String, message: String) {
@@ -128,7 +206,7 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
             .setSmallIcon(R.mipmap.logo_app)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
-        with(NotificationManagerCompat.from(context)){
+        with(NotificationManagerCompat.from(context)) {
             notify(1001, notificationBuilder.build())
         }
     }

@@ -22,8 +22,6 @@ import com.fardhani.smarthome.ShowAllActivity
 import com.fardhani.smarthome.ViewModel.LocationViewModel
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.dashboard.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 class DashboardFragment : Fragment() {
     private lateinit var databaseReference: DatabaseReference
@@ -118,13 +116,6 @@ class DashboardFragment : Fragment() {
         checkDoorCondition(view.txtDoorCondition)
         //listener for switch condition
         view.switchSecurityMode.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                //add input to recent activity
-                inputRecentActivity("ACTIVE SECURITY MODE", Date().toString(), "Fardhani")
-            } else {
-                //add input to recent activity
-                inputRecentActivity("INACTIVE SECURITY MODE", Date().toString(), "Fardhani")
-            }
             switchMode(isSecurityMode, view.switchSecurityMode, view.txtSecurityModeStatus)
             isSecurityMode = isChecked
             setDB()
@@ -141,8 +132,6 @@ class DashboardFragment : Fragment() {
                     doorStatus(view.btLockDoor, view.txtDoorStatus)
                     isLocked = !isLocked
                     setDB()
-                    //add input to recent activity
-                    inputRecentActivity("LOCK DOOR", Date().toString(), "Fardhani")
                 }
             } else {
                 Toast.makeText(
@@ -180,15 +169,6 @@ class DashboardFragment : Fragment() {
         isLocked = false
         FirebaseDatabase.getInstance().getReference("security_status").child("locked")
             .setValue(isLocked)
-        //add input to recent activity
-        val recentActivity = RecentActivityModel("UNLOCK DOOR", Date().toString(), "Fardhani")
-        FirebaseDatabase.getInstance().getReference("activity").push().setValue(recentActivity)
-    }
-
-    //function to input recent activity in firebase
-    private fun inputRecentActivity(activity: String?, time: String?, uid_name: String?) {
-        val recentActivity = RecentActivityModel(activity, time, uid_name)
-        databaseReference.child("activity").push().setValue(recentActivity)
     }
 
     //get recent activity
