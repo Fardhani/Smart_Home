@@ -254,9 +254,11 @@ class DashboardFragment : Fragment() {
         if (isChecked) {
             switchText.text = "ON"
             switchText.setTextColor(resources.getColor(R.color.green))
+            switch.isChecked = isChecked
         } else {
             switchText.text = "OFF"
             switchText.setTextColor(resources.getColor(R.color.red))
+            switch.isChecked = isChecked
         }
     }
 }
