@@ -73,7 +73,7 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
                 override fun onDataChange(p0: DataSnapshot) {
                     //add activity lock or unlock the door
                     if (homeLocked != (p0.child("locked").value as Boolean?)!!) {
-                        if (homeLocked == false) {
+                        if (homeLocked != false) {
                             //add input to recent activity
                             inputRecentActivity(
                                 "UNLOCK THE DOOR",
@@ -91,7 +91,7 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
                     }
                     //add activity open or close the door
                     if (homeClosed != (p0.child("closed").value as Boolean?)!!) {
-                        if (homeClosed == false) {
+                        if (homeClosed != false) {
                             //add input to recent activity
                             inputRecentActivity(
                                 "CLOSE THE DOOR",
@@ -108,7 +108,7 @@ class LocationRepository(context: Context) : LiveData<LocationModel>() {
                         }
                     }
                     if (securityMode != (p0.child("securityMode").value as Boolean?)!!) {
-                        if (securityMode == false) {
+                        if (securityMode != false) {
                             //add input to recent activity
                             inputRecentActivity(
                                 "ENABLE SECURITY MODE",
