@@ -1,14 +1,12 @@
 package com.fardhani.smarthome
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fardhani.smarthome.Adapter.KeyAdapter
-import com.fardhani.smarthome.Adapter.RecentActivityAdapter
 import com.fardhani.smarthome.Model.KeyModel
-import com.fardhani.smarthome.Model.RecentActivityModel
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_registered_key.*
 

@@ -1,10 +1,6 @@
 package com.fardhani.smarthome.Fragment
 
 import android.annotation.SuppressLint
-import android.content.Context.LOCATION_SERVICE
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater

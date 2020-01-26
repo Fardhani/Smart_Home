@@ -1,8 +1,8 @@
 package com.fardhani.smarthome
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.fardhani.smarthome.Model.HomeProfileModel
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_edit_home_profile.*
