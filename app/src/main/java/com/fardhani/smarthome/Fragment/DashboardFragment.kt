@@ -197,10 +197,13 @@ class DashboardFragment : Fragment() {
                     }
                     //to get recent activity
                     listRecentActivity.reverse()
-                    //recyclerview initiation
-                    recyclerView.setHasFixedSize(true)
-                    recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
-                    recyclerView.adapter = RecentActivityAdapter(listRecentActivity)
+                    if (activity?.applicationContext != null) {
+                        //recyclerview initiation
+                        recyclerView.setHasFixedSize(true)
+                        recyclerView.layoutManager =
+                            LinearLayoutManager(activity?.applicationContext!!)
+                        recyclerView.adapter = RecentActivityAdapter(listRecentActivity)
+                    }
                 }
             })
     }
